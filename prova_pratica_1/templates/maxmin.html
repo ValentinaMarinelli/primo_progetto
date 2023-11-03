@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{%block title%} {{block.super}} | MaxMin {%endblock title%}
+
+{%block content%}
+num1 = {{num1}} </br>
+num2 = {{num2}}</br>
+
+{% if num1 < num2%}
+    <p style="color:red"> {{num1}} </p>
+    <p style="color:green"> {{num2}} </p>
+{% elif num2 < num1 %}
+    <p style="color:green"> {{num1}} </p>
+    <p style="color:red"> {{num2}} </p>
+{% else %}
+    <p style="color:black"> {{num1}} </p>
+    <p style="color:black"> {{num2}} </p>
+{% endif %}
+<p> Somma : {{somma}} </p> 
+
+{%endblock content%}

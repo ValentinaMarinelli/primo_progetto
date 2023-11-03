@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{%block title%} {{block.super}} | Voti {%endblock title%}
+
+{%block content%}
+<h2>Contenuto del dizionario: </h2>
+<table id="tabella">
+    <thead>
+        <tr>
+            <th> Studente </th>
+            <th> Voto </th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+{% for key, value in tabella.items %}
+    <td>{{ key }}</td>
+    <td>{{value}}</td>
+{%endfor%}
+
+{%endblock content%}
