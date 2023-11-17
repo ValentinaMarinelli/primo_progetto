@@ -7,11 +7,11 @@
 {%block content%}
    <h1> Query </h1>
 
-   <h2> Articoli del giornalista Bianchi </h2>
-   {%for articolo in articoli_cognome%}
-        {{articolo.titolo}}
+   <h6> Query 1: Articoli del giornalista Bianchi </h6>
+   <ul>{%for articolo in articoli_cognome%}
+        <li>{{articolo.titolo}}</li>
    {%endfor%}
-   <hr>
+   </ul>
 
    <h6>Query 2: Numero totale di articoli</h6>
     <p>{{ numero_totale_articoli }}</p>
@@ -86,6 +86,41 @@
     <h6>Query 15: Articoli che contengono la parola 'importante' nel titolo</h6>
     <ul>
         {% for articolo in articoli_parola %}
+            <li>{{ articolo.titolo }}</li>
+        {% endfor %}
+    </ul>
+
+    <h6>Query 16: Articoli pubblicati in un certo mese di un anno specifico</h6>
+    <ul>
+        {% for articolo in articoli_mese_anno %}
+            <li>{{ articolo.titolo }}</li>
+        {% endfor %}
+    </ul>
+
+    <h6>Query 17: Giornalisti con almeno un articolo con più 100 visualizzazione</h6>
+    <ul>
+        {% for giornalista in giornalisti_con_articoli_popolari %}
+            <li>{{ giornalista.nome }} {{ giornalista.cognome }}</li>
+        {% endfor %}
+    </ul>
+
+    <h6>Query 18: Condizione AND</h6>
+    <ul>
+        {% for articolo in articoli_con_and %}
+            <li>{{ articolo.titolo }}</li>
+        {% endfor %}
+    </ul>
+
+    <h6>Query 19: Condizione OR</h6>
+    <ul>
+        {% for articolo in articoli_con_or %}
+            <li>{{ articolo.titolo }}</li>
+        {% endfor %}
+    </ul>
+
+    <h6>Query 20: Condizione NOT</h6>
+    <ul>
+        {% for articolo in articoli_con_not %}
             <li>{{ articolo.titolo }}</li>
         {% endfor %}
     </ul>
