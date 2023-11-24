@@ -42,6 +42,12 @@ def articoloDetailView(request, pk):
     context = {"articolo": articolo}
     return render(request, "articolo_detail.html", context)
 
+def giornalistaDetailVieW(request,pk):
+    giornalista = get_object_or_404(Giornalista,pk=pk)
+    articoli = Articolo.objects.filter(giornalista_id=pk)
+    context = {"giornalista": giornalista,"articoli": articoli}
+    return render(request, "giornalista_detail.html", context)
+
 def listaArticoli(request,pk=None):
     if(pk==None):
         articoli = Articolo.objects.all()
@@ -52,6 +58,17 @@ def listaArticoli(request,pk=None):
         'pk' : pk,
     }
     return render(request,'lista_articoli.html',context)
+
+def listaGiornalisti(request,pk=None):
+    if(pk==None):
+        giornalisti = Giornalista.objects.all()
+    else:
+        giornalisti = Giornalista.objects.filter(giornalista_id=pk)
+    context = {
+        'giornalisti' : giornalisti,
+        'pk' : pk,
+    }
+    return render(request,'lista_giornalisti.html',context)
 
 def index_news(request):
     return render(request, "index_news.html")
@@ -160,3 +177,4 @@ def queryBase(request):
         'articoli_con_not' : articoli_con_not,
     }
     return render(request,'query.html',context)
+
