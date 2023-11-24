@@ -3,7 +3,8 @@
 {%block title%} {{block.super}} | Chi Siamo {%endblock title%}
 
 {%block content%}
-    <!--<li><a href="/admin">Pannello admin</a></li>
-    <li><a href="{% url 'prima_app:index'%}"> Index</a></li>
-    <li><a href="{% url 'seconda_app:index_2'%}"> Index 2</a></li>-->
+    <li><a href="/admin">Pannello admin</a></li>
+    <li><a href="{% url 'prima_app:index'%}"> Index Prima App</a></li>
+    <li><a href="{% url 'seconda_app:index_2'%}"> Index Seconda App</a></li>
+    <li><a href="{% url 'news:index_news'%}"> Index News</a></li>
     {%endblock content%}
