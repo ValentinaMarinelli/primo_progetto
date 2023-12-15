@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{%block title%} {{block.super}} | Media Studenti {%endblock title%}
+
+{%block content%}
+    {%for studente, materie in voti.items%}
+        <li>{{studente}} : {{media}}</li>
+    {%endfor%}
+{%endblock content%}
