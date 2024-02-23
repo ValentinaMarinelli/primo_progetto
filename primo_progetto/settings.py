@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-fpz(sj09%27^984l^wcjrby9!fv53w*uzw21+db)z=_3^4gnnp
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'seconda_app',
     'news',
     'voti',
+    'corsheaders',
     
 ]
 
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'primo_progetto.urls'

@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Articolo, Giornalista
 import datetime
-
+from django.http import JsonResponse
 # Create your views here.
 
 def home(request):
-    """a = ""
+    """
+    a = ""
     g = ""
     for art in Articolo.objects.all():
         a += (art.titolo + "<br>")
@@ -13,10 +14,11 @@ def home(request):
     for gio in Giornalista.objects.all():
         g += (gio.nome + "<br>")
     response = "Articoli:<br>" + a + "<br>Giornalisti:<br>" + g
-
-    return HttpResponse("<h1>" + response + "</h1>")""" 
+    """
+    #return HttpResponse("<h1>" + response + "</h1>")
     #Nella nuova versione seguente "a" e "g" sono due array, mentre precedentemente erano due stringhe
-    """a = []
+    """
+    a = []
     g = []
     for art in Articolo.objects.all():
         a.append(art.titolo)
@@ -27,7 +29,8 @@ def home(request):
     response = str(a) + "<br>" + str(g)
     print(response)
 
-    return HttpResponse("<h1>" + response + "</h1>")"""
+    return HttpResponse("<h1>" + response + "</h1>")
+    """
     #Nella nuova versione le variabili "articoli" e "giornalisti" contengono le istanze delle rispettive classi
     #Vengono unite nella variabile "context" e successivamente stampate e passate alla pagina "homepage.html"
     articoli = Articolo.objects.all()  
@@ -35,6 +38,7 @@ def home(request):
     context = {"articoli": articoli, "giornalisti": giornalisti}
     print(context)
     return render(request, "homepage_news.html", context)
+    
 
 def articoloDetailView(request, pk):
     # articolo = Articolo.objects.get(pk=pk)
@@ -178,3 +182,52 @@ def queryBase(request):
     }
     return render(request,'query.html',context)
 
+
+
+def giornalisti_list_api(request):
+    giornalisti = Giornalista.objects.all()
+    data = {'giornalisti':list(giornalisti.values("pk","nome","cognome"))}
+    response = JsonResponse(data)
+    return response
+
+def giornalista_api(request,pk):
+    try:
+        giornalista = Giornalista.objects.get(pk=pk)
+        data = {'giornalista':{
+            "nome" : giornalista.nome,
+            "cognome" : giornalista.cognome,
+            }
+        }
+        response = JsonResponse(data)
+    except Giornalista.DoesNotExist:
+        response = JsonResponse({
+            "error" : {
+                "code" : 404,
+                "message" : "Giornalista non trovato"
+            }},
+            status = 404)
+    return response
+
+def articoli_list_api(request):
+    articoli = Articolo.objects.all()
+    data = {'articoli':list(articoli.values("pk","titolo","contenuto"))}
+    response = JsonResponse(data)
+    return response
+
+def articoli_api(request,pk):
+    try:
+        articolo = Articolo.objects.get(pk=pk)
+        data = {'articolo':{
+            "titolo" : articolo.titolo,
+            "contenuto" : articolo.contenuto,
+            }
+        }
+        response = JsonResponse(data)
+    except Articolo.DoesNotExist:
+        response = JsonResponse({
+            "error" : {
+                "code" : 404,
+                "message" : "Articolo non trovato"
+            }},
+            status = 404)
+    return response
