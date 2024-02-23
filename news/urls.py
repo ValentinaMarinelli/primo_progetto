@@ -15,4 +15,8 @@ urlpatterns = [
     path("lista_giornalisti/", listaGiornalisti, name = "lista_giornalisti"),
     path("query/", queryBase, name = "query"),
     path('', index_news, name='index_news'),
+    path("giornalisti_list_api/", giornalisti_list_api, name='giornalisti_list_api'),
+    path("giornalista_api/<int:pk>", giornalista_api, name='giornalista_api'),
+    path("articoli_list_api/", articoli_list_api, name='articoli_list_api'),
+    path("articolo_api/<int:pk>", articoli_api, name='articoli_api'),
 ]
