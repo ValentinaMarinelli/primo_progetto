@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'products',
     'forms_app',
-    
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'primo_progetto.urls'
@@ -149,3 +151,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
