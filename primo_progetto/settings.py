@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'voti',
     'corsheaders',
     'products',
+    'forms_app',
     
 ]
 
@@ -69,6 +70,7 @@ TEMPLATES = [
                  os.path.join(BASE_DIR, 'prova_pratica_1/templates'),
                  os.path.join(BASE_DIR, 'news/templates'),
                  os.path.join(BASE_DIR, 'voti/templates'),
+                 os.path.join(BASE_DIR, 'forms_app/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
