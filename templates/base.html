@@ -84,7 +84,7 @@
       </li>
 
         {%if request.user.is_authenticated %}
-          
+        <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                {{ request.user.username }}
@@ -93,6 +93,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'logout' %}">Esci</a>
             </div>
+          
           
         {%else%}
             <a class="nav-link" href="{% url 'login' %}">Login</a>
