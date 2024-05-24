@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-fpz(sj09%27^984l^wcjrby9!fv53w*uzw21+db)z=_3^4gnnp
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'prima_app',
     'seconda_app',
     'news',
-    
+    'voti',
+    'corsheaders',
+    'products',
+    'forms_app',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'primo_progetto.urls'
@@ -64,6 +71,8 @@ TEMPLATES = [
                  os.path.join(BASE_DIR, 'seconda_app/templates'),
                  os.path.join(BASE_DIR, 'prova_pratica_1/templates'),
                  os.path.join(BASE_DIR, 'news/templates'),
+                 os.path.join(BASE_DIR, 'voti/templates'),
+                 os.path.join(BASE_DIR, 'forms_app/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,9 +134,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+#STATIC_URL e MEDIA_URL definiscono gli URL di base per accedere ai file statici
+# e ai file multimediali nel tuo progetto Django,
+# mentre MEDIA_ROOT definisce la directory fisica sul server in cui vengono
+# salvati i file multimediali.
+STATIC_URL = '/static/'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = "uploads"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

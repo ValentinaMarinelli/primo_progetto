@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{%block title%} {{block.super}} | Voti Studenti {%endblock title%}
+
+{%block content%}
+<ul>
+    {%for studente, materie in voti.items%}
+        <li>{{studente}}</li>
+        <ul>
+        {%for materia in materie%}
+            <li> {{materia.0}} , {{materia.1}} , {{materia.2}}</li>
+        {%endfor%}
+        </ul>
+    {%endfor%}
+    </ul>
+{%endblock content%}
